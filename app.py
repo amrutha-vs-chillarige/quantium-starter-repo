@@ -8,7 +8,12 @@ import plotly.express as px
 # Load and Prepare Data
 # -------------------------
 
-df = pd.read_csv("formatted_sales_data.csv")
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(BASE_DIR, "formatted_sales_data.csv")
+
+df = pd.read_csv(csv_path)
 
 df["Date"] = pd.to_datetime(df["Date"])
 df = df.sort_values("Date")
@@ -30,6 +35,7 @@ app.layout = html.Div(
         # Header
         html.H1(
             "Soul Foods Pink Morsel Sales Dashboard",
+            id="dashboard-header",
             style={
                 "textAlign": "center",
                 "color": "#8b0000",
